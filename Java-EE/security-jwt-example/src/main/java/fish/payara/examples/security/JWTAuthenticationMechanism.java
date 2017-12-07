@@ -164,14 +164,16 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
     }
 
     /**
-     * this function invoked using RememberMe.isRememberMeExpression EL
+     * this function invoked using .isRememberMeExpression EL
      * expression
      *
      * @param context
      * @return The remember me flag
      */
     public Boolean isRememberMe(HttpMessageContext context) {
-        return Boolean.valueOf(context.getRequest().getParameter("rememberme"));
+    	final Boolean result = Boolean.valueOf(context.getRequest().getParameter("rememberme"));
+    	LOGGER.log(Level.INFO, "RememberMe={0}", result);
+        return result;
     }
 
 }
